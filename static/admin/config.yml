@@ -1,0 +1,18 @@
+backend:
+  name: github
+  repo: BernardMcWeeney/BernardMcWeeney.com
+  branch: main
+  site_domain: BernardMcWeeney.com
+
+media_folder: "static/images"
+public_folder: "/images"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Content", name: "body", widget: "markdown"}
