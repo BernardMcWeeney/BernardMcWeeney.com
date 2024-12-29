@@ -5,12 +5,13 @@
   "scripts": {
     "dev:tailwind": "npx tailwindcss -i ./assets/css/main.css -o ./static/css/style.css --watch",
     "dev:hugo": "cd ../.. && hugo server -D",
-    "dev": "concurrently \"npm run dev:tailwind\" \"npm run dev:hugo\""
+    "dev": "concurrently \"npm run dev:tailwind\" \"npm run dev:hugo\"",
+    "build": "npx tailwindcss -i ./assets/css/main.css -o ./static/css/style.css --minify"
   },
   "devDependencies": {
     "autoprefixer": "latest",
-    "concurrently": "^9.1.1",
     "postcss": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "concurrently": "latest"
   }
 }
