@@ -1,0 +1,16 @@
+{
+  "name": "twentytwentyfive",
+  "version": "1.0.0",
+  "description": "Hugo theme with Tailwind CSS",
+  "scripts": {
+    "dev:tailwind": "npx tailwindcss -i ./assets/css/main.css -o ./static/css/style.css --watch",
+    "dev:hugo": "cd ../.. && hugo server -D",
+    "dev": "concurrently \"npm run dev:tailwind\" \"npm run dev:hugo\""
+  },
+  "devDependencies": {
+    "autoprefixer": "latest",
+    "concurrently": "^9.1.1",
+    "postcss": "latest",
+    "tailwindcss": "latest"
+  }
+}
