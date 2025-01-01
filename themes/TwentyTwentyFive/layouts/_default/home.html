@@ -20,6 +20,50 @@
             {{ end }}
         </div>
 
+        <!-- Recent Posts -->
+        <h2 class="text-3xl font-bold mb-6">Recent Posts</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {{ range first 6 site.RegularPages }}
+            <a href="{{ .RelPermalink }}" class="block h-full">
+                <article class="bg-white rounded-lg shadow-sm overflow-hidden h-full flex flex-col">
+                    <div class="relative">
+                        {{ with .Params.image }}
+                        <img src="{{ . }}" class="w-full h-48 object-cover" alt="{{ $.Title }}">
+                        {{ else }}
+                        <!-- Fallback image or placeholder if no image is set -->
+                        <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-400">No image</span>
+                        </div>
+                        {{ end }}
+                        <div class="absolute top-4 left-4">
+                            {{ with .Params.categories }}
+                                {{ range first 1 . }}
+                                <span class="inline-block px-3 py-1 bg-gray-900 text-white text-sm font-medium rounded-full">
+                                    {{ . }}
+                                </span>
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2 line-clamp-2">{{ .Title }}</h3>
+                        {{ with .Description }}
+                        <p class="text-gray-600 mb-4 flex-1 line-clamp-2">{{ . }}</p>
+                        {{ end }}
+                        <div class="flex items-center justify-between text-sm text-gray-500 mt-auto">
+                            <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                            <span class="text-blue-600 hover:text-blue-800">Read more →</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+            {{ else }}
+            <div class="col-span-full">
+                <p class="text-gray-600">No posts yet.</p>
+            </div>
+            {{ end }}
+        </div>
+
         <!-- Featured Posts -->
         <h2 class="text-3xl font-bold mb-6">Featured Posts</h2>
         <div class="grid md:grid-cols-2 gap-6 mb-8">
@@ -78,17 +122,43 @@
 
         <!-- Favorite Posts -->
         <h2 class="text-3xl font-bold mb-6">My Favorite Posts</h2>
-        <div class="bg-white rounded-lg shadow-sm divide-y">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {{ $favoritePosts := where site.RegularPages "Params.favorite" true }}
             {{ if $favoritePosts }}
-                {{ range $favoritePosts }}
-                <a href="{{ .RelPermalink }}" class="block p-4 hover:bg-gray-50">
-                    <h3 class="font-semibold text-lg text-gray-900">{{ .Title }}</h3>
-                    <p class="text-gray-500 text-sm mt-1">{{ .Date.Format "January 2, 2006" }}</p>
-                </a>
+                {{ range first 6 $favoritePosts }}
+                <div class="bg-white rounded-lg shadow-sm p-4 hover:bg-gray-50 transition duration-150">
+                    <a href="{{ .RelPermalink }}" class="block h-full">
+                        <h3 class="font-semibold text-lg text-gray-900 line-clamp-2">{{ .Title }}</h3>
+                        <p class="text-gray-500 text-sm mt-1">{{ .Date.Format "January 2, 2006" }}</p>
+                        
+                        <!-- Categories -->
+                        {{ with .Params.categories }}
+                        <div class="flex gap-2 mt-2 flex-wrap">
+                            {{ range . }}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                {{ . }}
+                            </span>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                        
+                        <!-- Tags -->
+                        {{ with .Params.tags }}
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            {{ range . }}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                #{{ . }}
+                            </span>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </a>
+                </div>
                 {{ end }}
             {{ else }}
-                <p class="text-gray-600 p-4">No favorite posts yet.</p>
+                <div class="col-span-3 bg-white rounded-lg shadow-sm">
+                    <p class="text-gray-600 p-4">No favorite posts yet.</p>
+                </div>
             {{ end }}
         </div>
     </div>
@@ -102,7 +172,6 @@
         {{ partial "sidebar/categories.html" . }}
         {{ partial "sidebar/tags.html" . }}
         {{ partial "sidebar/social.html" . }}
-        {{ partial "sidebar/upcoming-events.html" . }}
     </div>
 </div>
 {{ end }}

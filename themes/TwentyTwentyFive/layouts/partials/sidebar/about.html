@@ -1,11 +1,7 @@
 <div class="bg-white rounded-lg shadow-sm p-6">
     <!-- Image/Logo Section -->
     <div class="relative h-32 bg-gray-100 rounded-lg mb-6">
-        {{ with .Site.Params.logo }}
-            <img src="{{ . }}" alt="Site Logo" class="w-full h-full object-cover rounded-lg">
-        {{ else }}
-            <img src="/images/hero.jpg" alt="Site Logo" class="w-full h-full object-cover rounded-lg">
-        {{ end }}
+        <img src="../images/logo.png" alt="Site Logo" class="w-full h-full object-cover rounded-lg">
         <div class="absolute top-2 right-2">
             <div class="w-10 h-10 bg-white/90 rounded-lg flex items-center justify-center">
                 <span class="text-xl font-bold text-gray-800">

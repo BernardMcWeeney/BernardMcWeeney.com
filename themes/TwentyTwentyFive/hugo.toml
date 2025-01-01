@@ -1,6 +1,6 @@
 [params]
   [[params.passions]]
-    name = "Farming"
+    name = "Agriculture"
     icon = "fas fa-tractor"
   [[params.passions]]
     name = "Technology"
@@ -17,6 +17,12 @@
   [[params.passions]]
     name = "Business"
     icon = "fas fa-briefcase"
+  [[params.passions]]
+    name = "Ireland"
+    icon = "fas fa-house-flag"
+  [[params.passions]]
+    name = "Projects"
+    icon = "fas fa-box-open"
 
   [params.weather]
     temperature = "21"

@@ -15,9 +15,19 @@ theme = 'TwentyTwentyFive'
     icon = "fab fa-github"
   
   [[params.social]]
-    platform = "Twitter"
-    URL = "https://twitter.com/BernardMcWeeney"
-    icon = "fab fa-twitter"
+    platform = "Twitter / X"
+    URL = "https://x.com/BMcWeeneyIE"
+    icon = "fab fa-x-twitter"
+
+  [[params.social]]
+    platform = "Bluesky"
+    URL = "https://bsky.app/profile/bernardmcweeney.bsky.social"
+    icon = "fab fa-bluesky"
+  
+  [[params.social]]
+    platform = "Mastodon"
+    URL = "https://mastodon.social/@bernardmcweeney"
+    icon = "fab fa-mastodon"
 
 [menu]
   [[menu.main]]
