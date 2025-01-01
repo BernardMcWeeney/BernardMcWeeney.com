@@ -1,0 +1,11 @@
+<div class="bg-white p-6 rounded-lg shadow-sm">
+    <h2 class="text-xl font-bold mb-4">Recent Posts</h2>
+    <div class="space-y-4">
+        {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+        <a href="{{ .RelPermalink }}" class="block">
+            <h3 class="font-semibold hover:text-blue-600">{{ .Title }}</h3>
+            <p class="text-sm text-gray-600">{{ .Date.Format "Jan 2, 2006" }}</p>
+        </a>
+        {{ end }}
+    </div>
+</div>

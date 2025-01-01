@@ -8,11 +8,30 @@ media_folder: "static/images"
 public_folder: "/images"
 
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "content/posts"
+  - name: "pages"
+    label: "Pages"
+    folder: "content"
     create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "page"}
+
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Project URL", name: "project_url", widget: "string", required: false}
+      - {label: "Status", name: "status", widget: "select", options: ["ongoing", "completed", "planned"]}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Categories", name: "categories", widget: "list"}
+      - {label: "Tags", name: "tags", widget: "list"}

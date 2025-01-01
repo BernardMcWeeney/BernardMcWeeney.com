@@ -1,0 +1,7 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
+    {{ range split (.Get "images") "," }}
+    <div class="relative aspect-w-16 aspect-h-9">
+        <img src="{{ . }}" class="object-cover rounded-lg shadow-sm" alt="">
+    </div>
+    {{ end }}
+</div>

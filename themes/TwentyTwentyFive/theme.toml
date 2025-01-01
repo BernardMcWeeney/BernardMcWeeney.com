@@ -1,31 +1,22 @@
-name = 'Theme name'
+name = 'TwentyTwentyFive'
 license = 'MIT'
-licenselink = 'https://github.com/owner/repo/LICENSE'
-description = 'Theme description'
+licenselink = 'https://github.com/BernardMcWeeney/TwentyTwentyFive/LICENSE'
+description = 'A modern, responsive Hugo theme focused on personal blogging with support for multiple content types and dynamic widgets'
 
-# The home page of the theme, where the source can be found
-homepage = 'https://github.com/owner/repo'
+homepage = 'https://github.com/BernardMcWeeney/TwentyTwentyFive'
+demosite = 'https://bernardmcweeney.com'
 
-# If you have a running demo of the theme
-demosite = 'https://owner.github.io/repo'
-
-# Taxonomy terms
-tags = ['blog', 'company']
-features = ['some', 'awesome', 'features']
-
-# If the theme has multiple authors
-authors = [
-  {name = 'Name of author', homepage = 'Website of author'},
-  {name = 'Name of author', homepage = 'Website of author'}
+tags = ['blog', 'personal', 'responsive', 'modern', 'tailwind']
+features = [
+    'mobile-first',
+    'responsive',
+    'tailwind css',
+    'dark mode',
+    'widgets',
+    'multiple content types',
+    'social media integration'
 ]
 
-# If the theme has a single author
 [author]
-  name = 'Your name'
-  homepage = 'Your website'
-
-# If porting an existing theme
-[original]
-  author = 'Name of original author'
-  homepage = 'Website of original author'
-  repo = 'https://github.com/owner/repo'
+    name = 'Bernard McWeeney'
+    homepage = 'https://bernardmcweeney.com'

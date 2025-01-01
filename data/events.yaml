@@ -1,0 +1,7 @@
+upcoming_events:
+  - name: "Local Farmers Market"
+    date: "2024-01-15"
+    location: "Dublin"
+  - name: "Tech Meetup"
+    date: "2024-02-01"
+    location: "Drogheda"

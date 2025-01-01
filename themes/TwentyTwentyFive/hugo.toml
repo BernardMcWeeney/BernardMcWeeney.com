@@ -1,23 +1,32 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-US'
-title = 'My New Hugo Site'
+[params]
+  [[params.passions]]
+    name = "Farming"
+    icon = "fas fa-tractor"
+  [[params.passions]]
+    name = "Technology"
+    icon = "fas fa-laptop-code"
+  [[params.passions]]
+    name = "Music"
+    icon = "fas fa-music"
+  [[params.passions]]
+    name = "History"
+    icon = "fas fa-landmark"
+  [[params.passions]]
+    name = "Astronomy"
+    icon = "fas fa-star"
+  [[params.passions]]
+    name = "Business"
+    icon = "fas fa-briefcase"
 
-[[menus.main]]
-name = 'Home'
-pageRef = '/'
-weight = 10
+  [params.weather]
+    temperature = "21"
+    location = "Dublin, Ireland"
+    condition = "Partly Cloudy"
 
-[[menus.main]]
-name = 'Posts'
-pageRef = '/posts'
-weight = 20
+  [params.quote]
+    text = "The best way to predict the future is to create it."
+    author = "Peter Drucker"
 
-[[menus.main]]
-name = 'Tags'
-pageRef = '/tags'
-weight = 30
-
-[module]
-  [module.hugoVersion]
-    extended = false
-    min = "0.116.0"
+  [[params.events]]
+    name = "Local Farmers Market"
+    date = "2023-07-15"

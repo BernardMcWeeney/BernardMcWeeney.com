@@ -1,0 +1,11 @@
+<div class="bg-white p-6 rounded-lg shadow-sm">
+    <h2 class="text-xl font-bold mb-4">Categories</h2>
+    <div class="flex flex-wrap gap-2">
+        {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}" 
+           class="inline-block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full">
+            {{ $name }} ({{ .Count }})
+        </a>
+        {{ end }}
+    </div>
+</div>

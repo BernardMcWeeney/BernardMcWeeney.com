@@ -1,0 +1,12 @@
+<div class="border-l-4 p-4 my-4 
+    {{- with .Get "type" -}}
+        {{- if eq . "info" }} border-blue-500 bg-blue-50
+        {{- else if eq . "warning" }} border-yellow-500 bg-yellow-50
+        {{- else if eq . "error" }} border-red-500 bg-red-50
+        {{- else }} border-gray-500 bg-gray-50
+        {{- end -}}
+    {{- else -}}
+        border-gray-500 bg-gray-50
+    {{- end -}}">
+    {{ .Inner | markdownify }}
+</div>

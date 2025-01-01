@@ -1,0 +1,8 @@
+<figure class="my-4">
+    <img src="{{ .Get "src" }}" 
+         alt="{{ .Get "alt" }}" 
+         class="rounded-lg shadow-sm {{ with .Get "class" }}{{ . }}{{ end }}">
+    {{ with .Get "caption" }}
+    <figcaption class="text-sm text-gray-600 mt-2 text-center">{{ . }}</figcaption>
+    {{ end }}
+</figure>

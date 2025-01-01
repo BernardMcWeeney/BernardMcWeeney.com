@@ -1,0 +1,43 @@
+<div class="bg-white rounded-lg shadow-sm p-6">
+    <!-- Image/Logo Section -->
+    <div class="relative h-32 bg-gray-100 rounded-lg mb-6">
+        {{ with .Site.Params.logo }}
+            <img src="{{ . }}" alt="Site Logo" class="w-full h-full object-cover rounded-lg">
+        {{ else }}
+            <img src="/images/hero.jpg" alt="Site Logo" class="w-full h-full object-cover rounded-lg">
+        {{ end }}
+        <div class="absolute top-2 right-2">
+            <div class="w-10 h-10 bg-white/90 rounded-lg flex items-center justify-center">
+                <span class="text-xl font-bold text-gray-800">
+                    {{ substr ($.Site.Title) 0 1 }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Content -->
+    <h2 class="text-3xl font-bold mb-4">About</h2>
+    <p class="text-gray-600 text-lg mb-6">{{ .Site.Params.description }}</p>
+
+    <!-- Social Links -->
+    <div class="flex gap-4 mb-6">
+        {{ with .Site.Params.social }}
+            {{ range . }}
+            <a href="{{ .URL }}" 
+               class="text-gray-600 hover:text-blue-600 transition-colors"
+               target="_blank" 
+               rel="noopener noreferrer"
+               title="{{ .platform }}">
+                <i class="{{ .icon }} text-2xl"></i>
+            </a>
+            {{ end }}
+        {{ end }}
+    </div>
+
+    <!-- Read More Link -->
+    <a href="/about" 
+       class="text-blue-600 hover:text-blue-800 group inline-flex items-center">
+        Read more about me
+        <span class="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
+    </a>
+</div>

@@ -1,4 +1,42 @@
 baseURL = 'https://bernardmcweeney.com/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = "TwentyTwentyFive"
+title = 'Bernard McWeeney'
+theme = 'TwentyTwentyFive'
+
+  
+[params]
+  description = "Welcome to my personal blog where I share my thoughts on technology, farming, and Irish culture."
+  about = "Hello! I'm Bernard McWeeney, a passionate individual with interests spanning technology, farming, music, and Irish history. Through this blog, I share my journey and insights across these diverse fields."
+  logo = "/images/logo.jpg"  # Optional
+
+  [[params.social]]
+    platform = "GitHub"
+    URL = "https://github.com/BernardMcWeeney"
+    icon = "fab fa-github"
+  
+  [[params.social]]
+    platform = "Twitter"
+    URL = "https://twitter.com/BernardMcWeeney"
+    icon = "fab fa-twitter"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 20
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 30
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 40
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 50

@@ -1,0 +1,4 @@
+weather:
+  location: "Dublin, Ireland"
+  default_temperature: "21"
+  default_condition: "Partly Cloudy"
