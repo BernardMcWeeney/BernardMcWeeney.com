@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web-Development on Bernard McWeeney</title>
+    <link>http://localhost:1313/tags/web-development/</link>
+    <description>Recent content in Web-Development on Bernard McWeeney</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 29 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/web-development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/hello-world/</link>
+      <pubDate>Fri, 29 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hello-world/</guid>
+      <description>&lt;p&gt;This is my first blog post. Here&amp;rsquo;s how to use the Spotify shortcode:&lt;/p&gt;&#xA;&lt;p&gt;{{&amp;lt; spotify id=&amp;ldquo;track_id_here&amp;rdquo; &amp;gt;}}&lt;/p&gt;&#xA;&lt;p&gt;And here&amp;rsquo;s how to use the featured image shortcode:&lt;/p&gt;&#xA;&lt;p&gt;{{&amp;lt; featured-image src=&amp;quot;/images/hello-world.jpg&amp;quot; alt=&amp;ldquo;Hello World&amp;rdquo; caption=&amp;ldquo;My first blog post&amp;rdquo; &amp;gt;}}&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
