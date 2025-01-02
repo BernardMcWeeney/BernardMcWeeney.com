@@ -1,0 +1,79 @@
+{{ define "main" }}
+<div class="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold mb-12">Categories</h1>
+    
+    <div class="space-y-4" x-data="{ expanded: '' }">
+        {{ $categories := slice "Agriculture" "Technology" "Astronomy" "Business" "Ireland" }}
+        {{ range $mainCat := $categories }}
+        {{ $categoryPosts := (where $.Site.RegularPages "Params.categories" "intersect" (slice $mainCat)) }}
+        {{ if gt (len $categoryPosts) 0 }}
+        <div class="rounded-lg border border-gray-100">
+            <!-- Parent Category Header -->
+            <button
+                class="w-full px-6 py-4 flex items-center justify-between bg-white hover:bg-gray-50 rounded-lg transition-colors"
+                @click="expanded = expanded === '{{ $mainCat }}' ? '' : '{{ $mainCat }}'"
+            >
+                <div class="flex items-center gap-3">
+                    <svg 
+                        class="w-5 h-5 text-gray-500"
+                        :class="{ 'text-blue-500': expanded === '{{ $mainCat }}' }"
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                    >
+                        <path 
+                            :d="expanded === '{{ $mainCat }}' 
+                                ? 'M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z'
+                                : 'M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z'"
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            stroke-width="2"
+                        />
+                    </svg>
+                    <h2 class="text-xl font-semibold">{{ $mainCat }}</h2>
+                    <span class="text-sm text-gray-500">{{ len $categoryPosts }} posts</span>
+                </div>
+                
+                <svg 
+                    class="w-5 h-5 transform transition-transform duration-200"
+                    :class="{ 'rotate-180': expanded === '{{ $mainCat }}' }"
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                >
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </button>
+
+            <!-- Content Types using this Category -->
+            <div x-show="expanded === '{{ $mainCat }}'" x-collapse>
+                <div class="px-6 py-4 space-y-2">
+                    {{ range $section := slice "posts" "projects" "gallery" }}
+                    {{ $sectionPosts := where $categoryPosts "Section" $section }}
+                    {{ if gt (len $sectionPosts) 0 }}
+                    <div class="flex items-center gap-3 pl-8 py-2">
+                        <!-- Document Icon -->
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                        </svg>
+                        
+                        <a href="/{{ $section }}" class="font-medium text-gray-900 hover:text-blue-600">
+                            {{ humanize $section }}
+                        </a>
+                        
+                        <span class="text-sm text-gray-500">
+                            {{ len $sectionPosts }} entries
+                        </span>
+                    </div>
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+        {{ end }}
+    </div>
+</div>
+
+<script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+{{ end }}

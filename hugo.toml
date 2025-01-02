@@ -50,3 +50,20 @@ theme = 'TwentyTwentyFive'
     name = "Contact"
     url = "/contact/"
     weight = 50
+  [[menu.main]]
+    name = "Archives"
+    url = "/archives/"
+    weight = 60
+  [[menu.main]]
+    name = "Categories"
+    url = "/categories/"
+    weight = 70
+
+[params.dailyTracks]
+monday = "6eUWC6rP8Rcd9TfpjCbEJG"
+tuesday = "5EabbLQZbdhCqG6aK9PFLU"
+wednesday = "4mPx3lVrvLPMFK1NvLezB2"
+thursday = "08Hncs1L3PYHpfsb8sYdmQ"
+friday = "0MXmiqd7zoXxv6Gqn9ahhQ"
+saturday = "6jaAQqNv2iWQbx5SmYtHx4"
+sunday = "0gHvrWN5ZQPDqn3QnpI5DD"

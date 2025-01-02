@@ -60,5 +60,7 @@
     <loc>http://localhost:1313/wiki/</loc>
   </url><url>
     <loc>http://localhost:1313/about/</loc>
+  </url><url>
+    <loc>http://localhost:1313/archives/</loc>
   </url>
 </urlset>

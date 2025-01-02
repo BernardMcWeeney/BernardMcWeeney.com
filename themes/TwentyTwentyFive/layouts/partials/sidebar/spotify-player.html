@@ -1,18 +1,9 @@
 <div class="bg-white p-6 rounded-lg shadow-sm">
     <h2 class="text-xl font-bold mb-4">Recently Played</h2>
-    <!-- Spotify Embed -->
-    <!-- <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/track/6eUWC6rP8Rcd9TfpjCbEJG?utm_source=generator&theme=0" 
-        width="100%"
-        height="352" 
-        frameBorder="0" 
-        allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy">
-    </iframe> -->
-    <!-- Last.fm Now Playing -->
+    {{ $day := lower (now.Format "Monday") }}
+    {{ $trackID := index .Site.Params.dailyTracks $day }}
     <iframe style="border-radius:12px"
-        src="https://lastfm-recently-played.vercel.app/api?user=bmcweeney"
+        src="https://open.spotify.com/embed/track/{{ $trackID }}?utm_source=generator&theme=0" 
         width="100%"
         height="352" 
         frameBorder="0" 
@@ -20,4 +11,15 @@
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
         loading="lazy">
     </iframe>
+
+    <!-- Last.fm Now Playing -->
+    <!-- <iframe style="border-radius:12px"
+        src="https://lastfm-recently-played.vercel.app/api?user=bmcweeney"
+        width="100%"
+        height="352" 
+        frameBorder="0" 
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+    </iframe> -->
 </div>
