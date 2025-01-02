@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
 	<meta name="generator" content="Hugo 0.140.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
@@ -16,9 +16,9 @@
     
 
     
-    <meta name="description" content="This is a featured post description">
+    <meta name="description" content="Welcome to my personal blog where I share my thoughts on technology, farming, and Irish culture.">
 </head>
-<body class="bg-gray-50">
+<body class="flex flex-col min-h-screen bg-gray-50">
     <header class="bg-white shadow-sm">
     <div class="container mx-auto px-4">
         <nav class="flex items-center justify-between h-16">
@@ -44,7 +44,7 @@
         </nav>
     </div>
 </header>
-    <main class="container mx-auto px-4 py-8">
+    <main class="flex-1 container mx-auto px-4 py-8">
         
 <div class="flex flex-col lg:flex-row gap-8">
     
@@ -60,45 +60,45 @@
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             
-            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+            <a href="/categories/agriculture" class="bg-white p-4 rounded-lg shadow-sm text-center hover:bg-gray-50 transition duration-150">
                 <i class="fas fa-tractor text-blue-600 text-2xl mb-2 block"></i>
                 <h3 class="font-semibold">Agriculture</h3>
-            </div>
+            </a>
             
-            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+            <a href="/categories/technology" class="bg-white p-4 rounded-lg shadow-sm text-center hover:bg-gray-50 transition duration-150">
                 <i class="fas fa-laptop-code text-blue-600 text-2xl mb-2 block"></i>
                 <h3 class="font-semibold">Technology</h3>
-            </div>
+            </a>
             
-            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+            <a href="/music" class="bg-white p-4 rounded-lg shadow-sm text-center hover:bg-gray-50 transition duration-150">
                 <i class="fas fa-music text-blue-600 text-2xl mb-2 block"></i>
                 <h3 class="font-semibold">Music</h3>
-            </div>
+            </a>
             
-            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+            <a href="/wiki" class="bg-white p-4 rounded-lg shadow-sm text-center hover:bg-gray-50 transition duration-150">
                 <i class="fas fa-landmark text-blue-600 text-2xl mb-2 block"></i>
                 <h3 class="font-semibold">History</h3>
-            </div>
+            </a>
             
-            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+            <a href="/categories/astronomy" class="bg-white p-4 rounded-lg shadow-sm text-center hover:bg-gray-50 transition duration-150">
                 <i class="fas fa-star text-blue-600 text-2xl mb-2 block"></i>
                 <h3 class="font-semibold">Astronomy</h3>
-            </div>
+            </a>
             
-            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+            <a href="/categories/business" class="bg-white p-4 rounded-lg shadow-sm text-center hover:bg-gray-50 transition duration-150">
                 <i class="fas fa-briefcase text-blue-600 text-2xl mb-2 block"></i>
                 <h3 class="font-semibold">Business</h3>
-            </div>
+            </a>
             
-            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+            <a href="/categories/ireland" class="bg-white p-4 rounded-lg shadow-sm text-center hover:bg-gray-50 transition duration-150">
                 <i class="fas fa-house-flag text-blue-600 text-2xl mb-2 block"></i>
                 <h3 class="font-semibold">Ireland</h3>
-            </div>
+            </a>
             
-            <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+            <a href="/projects" class="bg-white p-4 rounded-lg shadow-sm text-center hover:bg-gray-50 transition duration-150">
                 <i class="fas fa-box-open text-blue-600 text-2xl mb-2 block"></i>
                 <h3 class="font-semibold">Projects</h3>
-            </div>
+            </a>
             
         </div>
 
@@ -106,11 +106,32 @@
         <h2 class="text-3xl font-bold mb-6">Recent Posts</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             
+            <a href="/gallery/test/" class="block h-full">
+                <article class="bg-white rounded-lg shadow-sm overflow-hidden h-full flex flex-col">
+                    <div class="relative">
+                        
+                        <img src="/images/hero.jpg" class="w-full h-48 object-cover" alt="">
+                        
+                        <div class="absolute top-4 left-4">
+                            
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold mb-2 line-clamp-2">test</h3>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500 mt-auto">
+                            <span>Jan 2, 2025</span>
+                            <span class="text-blue-600 hover:text-blue-800">Read more →</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+            
             <a href="/posts/post-1/" class="block h-full">
                 <article class="bg-white rounded-lg shadow-sm overflow-hidden h-full flex flex-col">
                     <div class="relative">
                         
-                        <img src="/images/featured-1.jpg" class="w-full h-48 object-cover" alt="My Featured Post">
+                        <img src="/images/featured-1.jpg" class="w-full h-48 object-cover" alt="">
                         
                         <div class="absolute top-4 left-4">
                             
@@ -139,7 +160,7 @@
                 <article class="bg-white rounded-lg shadow-sm overflow-hidden h-full flex flex-col">
                     <div class="relative">
                         
-                        <img src="/images/featured-1.jpg" class="w-full h-48 object-cover" alt="My Featured Post">
+                        <img src="/images/featured-1.jpg" class="w-full h-48 object-cover" alt="">
                         
                         <div class="absolute top-4 left-4">
                             
@@ -168,7 +189,7 @@
                 <article class="bg-white rounded-lg shadow-sm overflow-hidden h-full flex flex-col">
                     <div class="relative">
                         
-                        <img src="/images/hello-world.jpg" class="w-full h-48 object-cover" alt="My Featured Post">
+                        <img src="/images/hello-world.jpg" class="w-full h-48 object-cover" alt="">
                         
                         <div class="absolute top-4 left-4">
                             
@@ -249,7 +270,7 @@
                     <article class="bg-white rounded-lg shadow-sm overflow-hidden h-full">
                         <div class="relative">
                             
-                            <img src="/images/featured-1.jpg" class="w-full h-48 object-cover" alt="My Featured Post">
+                            <img src="/images/featured-1.jpg" class="w-full h-48 object-cover" alt="">
                             
                             <div class="absolute top-4 left-4">
                                 
@@ -274,7 +295,7 @@
                     <article class="bg-white rounded-lg shadow-sm overflow-hidden h-full">
                         <div class="relative">
                             
-                            <img src="/images/featured-1.jpg" class="w-full h-48 object-cover" alt="My Featured Post">
+                            <img src="/images/featured-1.jpg" class="w-full h-48 object-cover" alt="">
                             
                             <div class="absolute top-4 left-4">
                                 
@@ -303,7 +324,16 @@
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
             
             
-                <p class="text-gray-600">No gallery items yet.</p>
+                
+                <a href="/gallery/test/" class="block">
+                    <div class="relative h-48 rounded-lg overflow-hidden">
+                        <img src="/images/hero.jpg" class="w-full h-full object-cover" alt="test">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <h4 class="text-white font-semibold text-center px-4">test</h4>
+                        </div>
+                    </div>
+                </a>
+                
             
         </div>
 
@@ -497,7 +527,7 @@
         
         <a href="/categories/technology" 
            class="inline-block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full">
-            technology (4)
+            technology (2)
         </a>
         
     </div>
@@ -582,7 +612,7 @@
 </div>
 
     </main>
-    <footer class="bg-white shadow-sm mt-8">
+    <footer class="w-full bg-white shadow-sm">
     <div class="container mx-auto px-4 py-6">
         <div class="text-center text-gray-600">
             <p>&copy; 2025 Bernard McWeeney. All rights reserved.</p>

@@ -2,16 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-01-02T11:13:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/gallery/</loc>
+    <lastmod>2025-01-02T11:13:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/gallery/test/</loc>
+    <lastmod>2025-01-02T11:13:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/hugo/</loc>
-    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/post-1/</loc>
@@ -46,6 +52,12 @@
   </url><url>
     <loc>http://localhost:1313/tags/red/</loc>
     <lastmod>2023-03-15T11:00:00-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/music/</loc>
+  </url><url>
+    <loc>http://localhost:1313/projects/</loc>
+  </url><url>
+    <loc>http://localhost:1313/wiki/</loc>
   </url><url>
     <loc>http://localhost:1313/about/</loc>
   </url>

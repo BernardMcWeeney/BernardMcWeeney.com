@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,9 +17,9 @@
     <!-- Additional meta tags -->
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
 </head>
-<body class="bg-gray-50">
+<body class="flex flex-col min-h-screen bg-gray-50">
     {{ partial "header.html" . }}
-    <main class="container mx-auto px-4 py-8">
+    <main class="flex-1 container mx-auto px-4 py-8">
         {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}

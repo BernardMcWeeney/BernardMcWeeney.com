@@ -20,6 +20,47 @@ collections:
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Layout", name: "layout", widget: "hidden", default: "page"}
 
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Draft", name: "draft", widget: "boolean", default: false}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Category", name: "categories", widget: "select", options: ["Agriculture", "Technology", "Astronomy", "Business", "Ireland"]}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "music"
+    label: "Music Content"
+    folder: "content/music"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Type", name: "type", widget: "select", options: ["review", "artist", "concert"]}
+      - {label: "Artist", name: "artist", widget: "string"}
+      - {label: "Rating", name: "rating", widget: "number", min: 1, max: 5, required: false}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "wiki"
+    label: "History Wiki"
+    folder: "content/wiki"
+    create: true
+    nested:
+      depth: 2
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Period", name: "period", widget: "select", options: ["ancient", "medieval", "modern"]}
+      - {label: "Order", name: "weight", widget: "number"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
   - name: "projects"
     label: "Projects"
     folder: "content/projects"

@@ -2,27 +2,35 @@
   [[params.passions]]
     name = "Agriculture"
     icon = "fas fa-tractor"
+    url = "/categories/agriculture"
   [[params.passions]]
     name = "Technology"
     icon = "fas fa-laptop-code"
+    url = "/categories/technology"
   [[params.passions]]
     name = "Music"
     icon = "fas fa-music"
+    url = "/music"
   [[params.passions]]
     name = "History"
     icon = "fas fa-landmark"
+    url = "/wiki"
   [[params.passions]]
     name = "Astronomy"
     icon = "fas fa-star"
+    url = "/categories/astronomy"
   [[params.passions]]
     name = "Business"
     icon = "fas fa-briefcase"
+    url = "/categories/business"
   [[params.passions]]
     name = "Ireland"
     icon = "fas fa-house-flag"
+    url = "/categories/ireland"
   [[params.passions]]
     name = "Projects"
     icon = "fas fa-box-open"
+    url = "/projects"
 
   [params.weather]
     temperature = "21"
