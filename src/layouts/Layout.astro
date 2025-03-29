@@ -1,0 +1,94 @@
+---
+// Layout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { 
+  title, 
+  description = "A retro-modern developer blog focusing on web development, programming, and tech.", 
+  ogImage = "/images/og-image.png"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Preload fonts -->
+    <link rel="preload" href="/fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/SpaceMono-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    
+    <main class="flex-grow container mx-auto px-4 py-8">
+      <slot />
+    </main>
+    
+    <Footer />
+
+    <script>
+      // Add a class to body after page load for transitions
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('loaded');
+      });
+
+      // Add terminal-style page transitions
+      document.addEventListener('astro:before-swap', () => {
+        document.body.classList.add('page-transition');
+      });
+
+      document.addEventListener('astro:after-swap', () => {
+        document.body.classList.remove('page-transition');
+        window.scrollTo(0, 0);
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Page transition effects */
+  .page-transition {
+    opacity: 0.8;
+  }
+
+  body {
+    transition: opacity 0.2s ease;
+  }
+
+  body.loaded {
+    opacity: 1;
+  }
+
+  /* Ensure terminal cursor is visible */
+  .cursor-blink {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.2em;
+    background-color: var(--color-orange);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 0.2em;
+  }
+</style>

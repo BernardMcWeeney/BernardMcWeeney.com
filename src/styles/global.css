@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@layer theme {
+  :root {
+    --color-background: #f8f5f2;
+    --color-text: #1c1917;
+    --color-orange: #ff5500;
+    --color-orange-hover: #ff3300;
+    --font-mono: 'Space Mono', monospace, ui-monospace, SFMono-Regular;
+    --border-width: 2px;
+  }
+  
+  .dark {
+    --color-background: #232323;
+    --color-text: #f8f5f2;
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Space Mono';
+    src: url('/fonts/SpaceMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Space Mono';
+    src: url('/fonts/SpaceMono-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-family: var(--font-mono);
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-left: var(--border-width) solid #000;
+    border-right: var(--border-width) solid #000;
+  }
+  
+  ::selection {
+    background-color: var(--color-orange);
+    color: white;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-mono);
+    font-weight: bold;
+  }
+  
+  /* Terminal-style scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+    border-left: var(--border-width) solid #000;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #000;
+    border: var(--border-width) solid var(--color-background);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-orange);
+  }
+
+  /* Terminal blink animation */
+  @keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+  .cursor-blink {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.2em;
+    background-color: var(--color-orange);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 0.2em;
+  }
+
+  /* Terminal box styles */
+  .terminal-box {
+    border: var(--border-width) solid #000;
+    position: relative;
+  }
+
+  .terminal-box::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-orange);
+    border: var(--border-width) solid #000;
+    z-index: -1;
+  }
+
+  /* Shadow effect for cards */
+  .card-shadow {
+    position: relative;
+  }
+
+  .card-shadow::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-orange);
+    border: var(--border-width) solid #000;
+    z-index: -1;
+  }
+}
