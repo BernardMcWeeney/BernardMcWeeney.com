@@ -1,0 +1,22 @@
+---
+// components/WidgetContainer.astro
+// A reusable component for consistent widget styling
+
+interface Props {
+  title: string;
+  class?: string;
+}
+
+const { title, class: className = '' } = Astro.props;
+---
+
+<div class={`widget-container ${className}`}>
+  <div class="widget-header">
+    <h3 class="text-lg font-mono font-bold flex items-center">
+      <span class="text-orange-500 mr-2">&gt;</span> {title}
+    </h3>
+  </div>
+  <div class="widget-content">
+    <slot />
+  </div>
+</div>

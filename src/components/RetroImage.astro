@@ -1,0 +1,35 @@
+---
+// components/RetroImage.astro
+// A reusable component for terminal-style bordered images with hover effects
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  aspectRatio?: string;
+  class?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  aspectRatio = '16/9',
+  class: className = '' 
+} = Astro.props;
+---
+
+<div class={`border-2 border-black dark:border-white overflow-hidden transition-transform duration-300 ${className}`} style={{ aspectRatio }}>
+  <div class="w-full h-full overflow-hidden">
+    <img 
+      src={src} 
+      alt={alt} 
+      width={width} 
+      height={height}
+      loading="lazy"
+      class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+    />
+  </div>
+</div>

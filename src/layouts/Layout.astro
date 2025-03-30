@@ -1,5 +1,6 @@
 ---
 // Layout.astro
+import { ViewTransitions } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -38,15 +39,46 @@ const {
     <link rel="preload" href="/fonts/SpaceMono-Bold.woff2" as="font" type="font/woff2" crossorigin />
     
     <title>{title}</title>
-  </head>
-  <body class="min-h-screen flex flex-col">
-    <Header />
     
-    <main class="flex-grow container mx-auto px-4 py-8">
+    <!-- View Transitions -->
+    <ViewTransitions />
+    
+    <!-- Theme script - placed in head to avoid flash of incorrect theme -->
+    <script is:inline>
+      function applyTheme() {
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      
+      // Run immediately to set initial theme
+      applyTheme();
+      
+      // Also handle system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          if (e.matches) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        }
+      });
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col" transition:animate="none">
+    <Header transition:persist />
+    
+    <main class="flex-grow container mx-auto px-4 py-8" transition:animate="slide">
       <slot />
     </main>
     
-    <Footer />
+    <Footer transition:persist />
 
     <script>
       // Add a class to body after page load for transitions
@@ -54,41 +86,23 @@ const {
         document.body.classList.add('loaded');
       });
 
-      // Add terminal-style page transitions
-      document.addEventListener('astro:before-swap', () => {
-        document.body.classList.add('page-transition');
-      });
-
-      document.addEventListener('astro:after-swap', () => {
-        document.body.classList.remove('page-transition');
-        window.scrollTo(0, 0);
+      // Terminal effect animations for page transitions
+      document.addEventListener('astro:page-load', () => {
+        // Apply terminal-style entrance effect to elements with data-animation="terminal"
+        const elements = document.querySelectorAll('[data-animation="terminal"]');
+        elements.forEach((el, index) => {
+          if (el instanceof HTMLElement) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+              el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, index * 100);
+          }
+        });
       });
     </script>
   </body>
 </html>
-
-<style is:global>
-  /* Page transition effects */
-  .page-transition {
-    opacity: 0.8;
-  }
-
-  body {
-    transition: opacity 0.2s ease;
-  }
-
-  body.loaded {
-    opacity: 1;
-  }
-
-  /* Ensure terminal cursor is visible */
-  .cursor-blink {
-    display: inline-block;
-    width: 0.6em;
-    height: 1.2em;
-    background-color: var(--color-orange);
-    animation: blink 1s step-end infinite;
-    vertical-align: text-bottom;
-    margin-left: 0.2em;
-  }
-</style>

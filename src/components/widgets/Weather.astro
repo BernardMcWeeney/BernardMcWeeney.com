@@ -1,0 +1,54 @@
+---
+// components/widgets/Weather.astro
+// In production, this would connect to a weather API
+---
+
+<div class="weather-widget font-mono">
+  <div class="bg-black/5 dark:bg-white/5 border-2 border-border p-3">
+    <pre class="p-0 m-0 text-sm whitespace-pre-line">$ weather --location="current"
+
+<span class="text-orange-500">⚡ Loading weather data...</span>
+
+<span class="text-green-500">✓ Data retrieved successfully.</span>
+
+Location: San Francisco, CA
+Temperature: 62°F / 16°C
+Condition: Partly Cloudy
+Humidity: 67%
+Wind: 12 mph NW
+
+Forecast:
+<span class="text-orange-500">▂▃▅▇▅▃▂</span> Next 7 days</pre>
+  </div>
+  
+  <div class="pt-4 mt-4 border-t-2 border-border text-center">
+    <a 
+      href="#" 
+      class="inline-flex items-center justify-center font-mono text-xs hover:text-orange-500 transition-colors duration-300"
+      id="refresh-weather"
+    >
+      <span>Refresh Weather Data</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+</div>
+
+<script>
+  // Simulate weather refresh in a real app
+  document.addEventListener('astro:page-load', () => {
+    document.getElementById('refresh-weather')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      const terminalOutput = document.querySelector('.terminal-output pre');
+      if (terminalOutput) {
+        const originalContent = terminalOutput.innerHTML;
+        terminalOutput.innerHTML = '$ weather --location="current"\n\n<span class="text-orange-500">⚡ Loading weather data...</span>';
+        
+        setTimeout(() => {
+          terminalOutput.innerHTML = originalContent;
+        }, 1500);
+      }
+    });
+  });
+</script>
