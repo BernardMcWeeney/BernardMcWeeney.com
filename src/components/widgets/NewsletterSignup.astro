@@ -1,0 +1,54 @@
+---
+// components/widgets/NewsletterSignup.astro
+---
+<p class="text-sm mb-4">Get notified when I publish new articles and projects.</p>
+<form class="space-y-3">
+  <input 
+    type="email" 
+    placeholder="your@email.com" 
+    class="newsletter-input w-full px-3 py-2 border-2 border-[var(--color-border)] font-mono bg-transparent"
+    required
+  />
+  <button 
+    type="submit" 
+    class="w-full bg-white border-2 border-[var(--color-border)] dark:bg-[var(--color-background)] dark:border-[var(--color-border)] dark:text-[var(--color-text)] font-mono py-2 hover:border-[var(--color-accent)] transition-colors duration-300"
+  >
+    Subscribe
+  </button>
+</form>
+
+<style>
+  /* Custom placeholder styling */
+  .newsletter-input::placeholder {
+    /* Light mode placeholder color - semi-transparent black */
+    color: rgba(28, 25, 23, 0.6);
+    opacity: 1; /* Firefox requires this */
+  }
+
+  /* Dark mode placeholder styling */
+  :global(.dark) .newsletter-input::placeholder {
+    /* Dark mode placeholder color - semi-transparent white */
+    color: rgba(248, 245, 242, 0.6);
+    opacity: 1;
+  }
+  
+  /* Ensure text input color matches theme */
+  .newsletter-input {
+    color: var(--color-text);
+  }
+  
+  /* Remove default browser focus styles */
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+  
+  /* Remove browser's default autocomplete styling */
+  .newsletter-input:-webkit-autofill,
+  .newsletter-input:-webkit-autofill:hover,
+  .newsletter-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-text);
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+</style>

@@ -1,30 +1,18 @@
 ---
 // components/widgets/Weather.astro
-// In production, this would connect to a weather API
 ---
 
 <div class="weather-widget font-mono">
-  <div class="bg-black/5 dark:bg-white/5 border-2 border-border p-3">
-    <pre class="p-0 m-0 text-sm whitespace-pre-line">$ weather --location="current"
+  <div class="bg-black/5 dark:bg-white/5 border-2 border-[var(--color-border)] p-3">
+    <pre class="p-0 m-0 text-sm whitespace-pre-line" id="weather-terminal">$ weather --location="Ireland"
 
-<span class="text-orange-500">⚡ Loading weather data...</span>
-
-<span class="text-green-500">✓ Data retrieved successfully.</span>
-
-Location: San Francisco, CA
-Temperature: 62°F / 16°C
-Condition: Partly Cloudy
-Humidity: 67%
-Wind: 12 mph NW
-
-Forecast:
-<span class="text-orange-500">▂▃▅▇▅▃▂</span> Next 7 days</pre>
+<span class="text-[var(--color-accent)]">⚡ Loading weather data...</span></pre>
   </div>
   
-  <div class="pt-4 mt-4 border-t-2 border-border text-center">
+  <div class="pt-4 mt-4 border-t-2 border-[var(--color-border)] text-center">
     <a 
       href="#" 
-      class="inline-flex items-center justify-center font-mono text-xs hover:text-orange-500 transition-colors duration-300"
+      class="inline-flex items-center justify-center font-mono text-xs hover:text-[var(--color-accent)] transition-colors duration-300"
       id="refresh-weather"
     >
       <span>Refresh Weather Data</span>
@@ -36,19 +24,107 @@ Forecast:
 </div>
 
 <script>
-  // Simulate weather refresh in a real app
+  async function fetchWeatherData() {
+    try {
+      const terminalOutput = document.getElementById('weather-terminal');
+      
+      // Show loading message
+      terminalOutput.innerHTML = '$ weather --location="Ireland"\n\n<span class="text-[var(--color-accent)]">⚡ Loading weather data...</span>';
+      
+      // Fetch data from the Met Éireann API
+      const response = await fetch('https://www.met.ie/Open_Data/json/National.json');
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch weather data');
+      }
+      
+      const data = await response.json();
+      const forecast = data.forecasts[0].regions;
+      
+      // Also fetch warnings
+      const warningsResponse = await fetch('https://www.met.ie/Open_Data/json/warning_IRELAND.json');
+      const warningsData = await warningsResponse.json();
+      
+      // Process the data
+      const today = forecast.find(item => item.today)?.today || 'No data available';
+      const tonight = forecast.find(item => item.tonight)?.tonight || 'No data available';
+      const tomorrow = forecast.find(item => item.tomorrow)?.tomorrow || 'No data available';
+      const issued = forecast.find(item => item.issued)?.issued || '';
+      
+      // Format the date
+      const issuedDate = new Date(issued);
+      const formattedDate = issuedDate.toLocaleString('en-IE', {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      
+      // Check if there are any active warnings
+      let warningText = '';
+      if (warningsData && warningsData.warnings && warningsData.warnings.length > 0) {
+        const activeWarnings = warningsData.warnings.filter(w => w.level !== 'Clear');
+        if (activeWarnings.length > 0) {
+          warningText = `\n\n<span class="text-[var(--color-warning)]">⚠ Weather Warnings:</span>\n`;
+          activeWarnings.forEach(warning => {
+            warningText += `- ${warning.level} ${warning.type} warning for ${warning.regions.join(', ')}\n`;
+          });
+        }
+      }
+      
+      // Build the output
+      const output = `$ weather --location="Ireland"
+
+<span class="text-[var(--color-accent)]">✓ Data retrieved successfully.</span>
+
+Location: Ireland
+Issued: ${formattedDate}
+
+Today: 
+${today}
+
+Tonight:
+${tonight}
+
+Tomorrow:
+${tomorrow}${warningText}
+
+<span class="text-[var(--color-accent)]">▃▅▇▂▃▅▄</span> Forecast trend`;
+      
+      // Update the terminal output
+      terminalOutput.innerHTML = output;
+      
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      const terminalOutput = document.getElementById('weather-terminal');
+      terminalOutput.innerHTML = '$ weather --location="Ireland"\n\n<span class="text-red-500">✗ Error: Failed to fetch weather data. Please try again later.</span>';
+    }
+  }
+
+  // Initialize
   document.addEventListener('astro:page-load', () => {
+    // Fetch weather data on initial load
+    fetchWeatherData();
+    
+    // Set up refresh button
     document.getElementById('refresh-weather')?.addEventListener('click', (e) => {
       e.preventDefault();
-      const terminalOutput = document.querySelector('.terminal-output pre');
-      if (terminalOutput) {
-        const originalContent = terminalOutput.innerHTML;
-        terminalOutput.innerHTML = '$ weather --location="current"\n\n<span class="text-orange-500">⚡ Loading weather data...</span>';
-        
-        setTimeout(() => {
-          terminalOutput.innerHTML = originalContent;
-        }, 1500);
-      }
+      fetchWeatherData();
     });
+  });
+  
+  // For client-side rendering without Astro integration
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!document.body.hasAttribute('data-astro-transition')) {
+      // Fetch weather data on initial load
+      fetchWeatherData();
+      
+      // Set up refresh button
+      document.getElementById('refresh-weather')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        fetchWeatherData();
+      });
+    }
   });
 </script>

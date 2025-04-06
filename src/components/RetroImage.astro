@@ -1,35 +1,46 @@
 ---
-// components/RetroImage.astro
-// A reusable component for terminal-style bordered images with hover effects
+// RetroImage.astro
+import { Image } from 'astro:assets';
 
 interface Props {
   src: string;
   alt: string;
+  class?: string;
   width?: number;
   height?: number;
-  aspectRatio?: string;
-  class?: string;
 }
 
-const { 
-  src, 
-  alt, 
-  width, 
-  height, 
-  aspectRatio = '16/9',
-  class: className = '' 
-} = Astro.props;
+const { src, alt, class: className = '', width, height } = Astro.props;
 ---
 
-<div class={`border-2 border-black dark:border-white overflow-hidden transition-transform duration-300 ${className}`} style={{ aspectRatio }}>
-  <div class="w-full h-full overflow-hidden">
+<div class={`retro-image relative ${className}`}>
+  <div class="relative z-10 border-2 border-[var(--color-border)] overflow-hidden bg-white text-black dark:bg-black dark:text-white">
     <img 
       src={src} 
       alt={alt} 
       width={width} 
-      height={height}
+      height={height} 
+      class="w-full h-full object-cover"
       loading="lazy"
-      class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
     />
   </div>
 </div>
+
+<style>
+  .retro-image {
+    position: relative;
+    display: block;
+  }
+  
+  .retro-image::after {
+    content: '';
+    position: absolute;
+    top: var(--card-shadow-offset);
+    left: var(--card-shadow-offset);
+    right: -6px;
+    bottom: -6px;
+    background-color: var(--color-accent);
+    border: var(--border-width) solid var(--color-border);
+    z-index: 1;
+  }
+</style>

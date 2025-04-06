@@ -2,45 +2,45 @@
 // Header.astro
 ---
 
-<header class="border-b-2 border-border py-5">
+<header class="border-b-2 border-[var(--color-border)] py-5">
   <div class="container mx-auto px-4">
     <nav class="flex flex-col sm:flex-row justify-between items-center">
       <div class="flex items-center mb-4 sm:mb-0">
-        <div class="text-2xl font-mono font-bold mr-2 text-orange-500">&gt;</div>
-        <a href="/" class="text-2xl font-mono font-bold hover:text-orange-500 transition-colors duration-300">
+        <div class="text-2xl font-mono font-bold mr-2 text-[var(--color-accent)]">&gt;</div>
+        <a href="/" class="text-2xl font-mono font-bold hover:text-[var(--color-accent)] transition-colors duration-300">
           Bernard_McWeeney/<span class="cursor-blink hidden sm:inline-block"></span>
         </a>
       </div>
       
       <ul class="flex flex-wrap justify-center gap-6 items-center text-sm font-mono">
         <li>
-          <a href="/" class="py-1 hover:text-orange-500 transition-colors duration-300 relative group">
+          <a href="/" class="py-1 hover:text-[var(--color-accent)] transition-colors duration-300 relative group">
             home
-            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-[var(--color-accent)] transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
         <li>
-          <a href="/blog" class="py-1 hover:text-orange-500 transition-colors duration-300 relative group">
+          <a href="/blog" class="py-1 hover:text-[var(--color-accent)] transition-colors duration-300 relative group">
             blog
-            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-[var(--color-accent)] transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
         <li>
-          <a href="/projects" class="py-1 hover:text-orange-500 transition-colors duration-300 relative group">
+          <a href="/projects" class="py-1 hover:text-[var(--color-accent)] transition-colors duration-300 relative group">
             projects
-            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-[var(--color-accent)] transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
         <li>
-          <a href="/about" class="py-1 hover:text-orange-500 transition-colors duration-300 relative group">
+          <a href="/about" class="py-1 hover:text-[var(--color-accent)] transition-colors duration-300 relative group">
             about
-            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-[var(--color-accent)] transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
         <li>
           <button 
             id="theme-toggle" 
-            class="border-2 border-border p-1.5 rounded-none hover:border-orange-500 transition-colors duration-300 flex items-center justify-center"
+            class="border-2 border-[var(--color-border)] p-1.5 rounded-none hover:border-[var(--color-accent)] transition-colors duration-300 flex items-center justify-center"
             aria-label="Toggle dark mode"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 dark:hidden">
@@ -57,15 +57,12 @@
 </header>
 
 <script>
-  // Theme toggle functionality
   document.addEventListener('astro:page-load', () => {
     const themeToggle = document.getElementById('theme-toggle');
     
     themeToggle?.addEventListener('click', () => {
-      // Toggle the class
       document.documentElement.classList.toggle('dark');
       
-      // Save preference to localStorage
       if (document.documentElement.classList.contains('dark')) {
         localStorage.setItem('theme', 'dark');
       } else {

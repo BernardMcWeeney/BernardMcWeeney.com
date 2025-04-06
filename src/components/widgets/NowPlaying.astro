@@ -1,11 +1,9 @@
 ---
 // components/widgets/NowPlaying.astro
-// This component displays recently played tracks and could be connected to Last.fm or Spotify API in production
-
 interface Track {
   title: string;
   artist: string;
-  album: string;
+  album?: string;
   cover: string;
 }
 
@@ -16,38 +14,30 @@ interface Props {
 const { tracks } = Astro.props;
 ---
 
-<div class="now-playing-widget">
-  <div class="space-y-4">
-    {tracks.map(track => (
-      <div class="flex items-center gap-3 p-3 border-2 border-border hover:border-orange-500 transition-colors duration-300 mb-4">
-        <div class="flex-shrink-0">
-          <div class="w-12 h-12 border-2 border-border overflow-hidden">
-            <img src={track.cover} alt={`${track.album} by ${track.artist}`} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-          </div>
-        </div>
-        <div class="min-w-0 flex-1">
-          <p class="font-mono font-bold text-sm whitespace-nowrap overflow-hidden text-ellipsis hover:text-orange-500">
-            {track.title}
-          </p>
-          <p class="text-xs whitespace-nowrap overflow-hidden text-ellipsis">
-            {track.artist} - {track.album}
-          </p>
-        </div>
+<div class="space-y-4">
+  {tracks.map(track => (
+    <div class="flex items-center gap-3 p-2 border-2 border-[var(--color-border)]">
+      <div class="flex-shrink-0 w-10 h-10 overflow-hidden">
+        <img src={track.cover} alt={`${track.artist} - ${track.title}`} class="w-full h-full object-cover" />
       </div>
-    ))}
-  </div>
+      <div class="flex-grow">
+        <h4 class="font-bold text-sm leading-tight">{track.title}</h4>
+        <p class="text-xs text-[var(--color-text-muted)]">{track.artist} - {track.album}</p>
+      </div>
+    </div>
+  ))}
+</div>
 
-  <div class="pt-4 mt-4 border-t-2 border-border text-center">
-    <a 
-      href="https://last.fm/user/bmcweeney" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      class="inline-flex items-center justify-center font-mono text-xs hover:text-orange-500 transition-colors duration-300"
-    >
-      <span>View Profile on Last.fm</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-      </svg>
-    </a>
-  </div>
+<div class="pt-4 mt-4 border-t-2 border-[var(--color-border)] text-center">
+  <a 
+    href="https://last.fm/user/bmcweeney" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="inline-flex items-center justify-center font-mono text-xs hover:text-[var(--color-accent)] transition-colors duration-300"
+  >
+    <span>View Profile on Last.fm</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+    </svg>
+  </a>
 </div>

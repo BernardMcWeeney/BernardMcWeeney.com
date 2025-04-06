@@ -71,7 +71,7 @@ const {
       });
     </script>
   </head>
-  <body class="min-h-screen flex flex-col" transition:animate="none">
+  <body class="bg-[var(--color-background)] text-[var(--color-text)] min-h-screen flex flex-col font-sans antialiased">
     <Header transition:persist />
     
     <main class="flex-grow container mx-auto px-4 py-8" transition:animate="slide">
@@ -81,14 +81,8 @@ const {
     <Footer transition:persist />
 
     <script>
-      // Add a class to body after page load for transitions
-      document.addEventListener('DOMContentLoaded', () => {
-        document.body.classList.add('loaded');
-      });
-
       // Terminal effect animations for page transitions
       document.addEventListener('astro:page-load', () => {
-        // Apply terminal-style entrance effect to elements with data-animation="terminal"
         const elements = document.querySelectorAll('[data-animation="terminal"]');
         elements.forEach((el, index) => {
           if (el instanceof HTMLElement) {
@@ -104,5 +98,13 @@ const {
         });
       });
     </script>
+    
+    <style is:global>
+      /* Selection styling */
+      ::selection {
+        background-color: var(--color-accent);
+        color: white;
+      }
+    </style>
   </body>
 </html>
