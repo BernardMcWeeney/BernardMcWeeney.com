@@ -2,7 +2,7 @@
 // index.astro
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import NowPlaying from '../components/widgets/NowPlaying.astro';
+import TopTrack from '../components/widgets/TopTrack.astro';
 import Weather from '../components/widgets/Weather.astro';
 import GitHubActivity from '../components/widgets/GitHubActivity.astro';
 import NewsletterSignup from '../components/widgets/NewsletterSignup.astro';
@@ -53,22 +53,6 @@ const projects = [
     link: "/projects/astromark",
     tags: ["Astro", "Markdown", "Blog"],
     image: "/images/projects/astromark.webp"
-  }
-];
-
-// Recent music
-const recentTracks = [
-  {
-    title: "Burning Down the House",
-    artist: "Talking Heads",
-    album: "Speaking in Tongues",
-    cover: "/images/music/talking-heads.webp"
-  },
-  {
-    title: "Blue Monday",
-    artist: "New Order",
-    album: "Power, Corruption & Lies",
-    cover: "/images/music/new-order.webp"
   }
 ];
 ---
@@ -166,9 +150,9 @@ const recentTracks = [
           <ProjectWidget projects={projects} />
         </WidgetContainer>
         
-        <!-- Now Playing Widget -->
-        <WidgetContainer title="Now Playing">
-          <NowPlaying tracks={recentTracks} />
+        <!-- Top Tracks Widget -->
+        <WidgetContainer title="Top Tracks">
+          <TopTrack />
         </WidgetContainer>
         
         <!-- Weather Widget -->

@@ -1,0 +1,81 @@
+---
+/*
+  components/widgets/TopTrack.astro
+  This component fetches the top tracks listened to by a user from Last.fm's API and displays the top 3 tracks.
+  
+  It uses environment variables for the API key and user:
+    - LAST_FM_API_KEY
+    - LAST_FM_USER
+
+  The API endpoint used is:
+  https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user={username}&period=7day&api_key={apiKey}&format=json&limit=3
+*/
+interface Track {
+  title: string;
+  artist: string;
+  album?: string;
+  cover: string;
+}
+
+const apiKey = import.meta.env.LAST_FM_API_KEY;
+const username = import.meta.env.LAST_FM_USER;
+const apiUrl = `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${username}&period=7day&api_key=${apiKey}&format=json&limit=3`;
+
+let tracks: Track[] = [];
+
+try {
+  const res = await fetch(apiUrl);
+  const data = await res.json();
+  
+  // Ensure the expected structure exists: data.toptracks.track should be an array
+  if (data && data.toptracks && Array.isArray(data.toptracks.track)) {
+    tracks = data.toptracks.track.map((t: any) => {
+      // The API returns an array of image objects.
+      // We attempt to find the image with size "medium" and fallback to the first image.
+      let cover = "";
+      if (t.image && Array.isArray(t.image) && t.image.length > 0) {
+        const found = t.image.find((img: any) => img.size === "medium") || t.image[0];
+        cover = found["#text"] || "";
+      }
+      return {
+        title: t.name,
+        artist: t.artist.name,
+        album: "", // Album info is not provided in this endpoint
+        cover: cover
+      };
+    });
+  }
+} catch (error) {
+  console.error("Failed to fetch top tracks:", error);
+}
+---
+
+<div class="space-y-4">
+  {tracks.map(track => (
+    <div class="flex items-center gap-3 p-2 border-2 border-[var(--color-border)]">
+      <div class="flex-shrink-0 w-10 h-10 overflow-hidden">
+        <img src={track.cover} alt={`${track.artist} - ${track.title}`} class="w-full h-full object-cover" />
+      </div>
+      <div class="flex-grow">
+        <h4 class="font-bold text-sm leading-tight">{track.title}</h4>
+        <p class="text-xs text-[var(--color-text-muted)]">
+          {track.artist}{track.album ? ` - ${track.album}` : ''}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<div class="pt-4 mt-4 border-t-2 border-[var(--color-border)] text-center">
+  <a 
+    href={`https://last.fm/user/${username}`} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="inline-flex items-center justify-center font-mono text-xs hover:text-[var(--color-accent)] transition-colors duration-300"
+  >
+    <span>View Profile on Last.fm</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+    </svg>
+  </a>
+</div>
